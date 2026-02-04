@@ -5,7 +5,7 @@
   font-style: normal;
 }
 
-.img_container {
+/* .img_container {
   border-radius: 15px;
   overflow: hidden;
   width: fit-content;
@@ -26,9 +26,8 @@
   color: white;
   top: 8px;
   left: 16px;
-  /* visibility: hidden; */
   transition: visibility 0.2s;
-}
+} */
 
 html {
   background-image: url("media/background1.jpg");
@@ -38,12 +37,12 @@ html {
 }
 
 #grid-div {
-  display: grid;
+  display: flex;
   justify-content: center;
   width: 100%;
 }
 
-button {
+a {
   all: unset;
   cursor: pointer;
 }
@@ -55,10 +54,10 @@ button {
   max-width: 15rem;
   max-height: 15rem;
   box-shadow: 0.5rem 0.5rem;
-  transform: translate(calc(-50% + 0.5rem), 0);
+  transform: translate(-50%, 0);
 }
 
-.under-stack-panel {
+.stack-card-under {
   box-shadow: 1rem 1rem;
 
   transform: scale(0);
@@ -66,6 +65,6 @@ button {
   overflow: hidden;
 }
 
-.under-stack-shown {
+.stack-card-under-shown {
   transform: scale(1);
 }
