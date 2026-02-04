@@ -1,0 +1,70 @@
+.ubuntu-sans-mono {
+  font-family: "Ubuntu Sans Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.img_container {
+  border-radius: 15px;
+  overflow: hidden;
+  width: fit-content;
+  height: fit-content;
+}
+
+.img_container_img {
+  position: relative;
+  transition: filter 0.2s;
+}
+
+.img_container_img:hover {
+  filter: blur(4px);
+}
+
+.img_text {
+  position: absolute;
+  color: white;
+  top: 8px;
+  left: 16px;
+  /* visibility: hidden; */
+  transition: visibility 0.2s;
+}
+
+html {
+  background-image: url("photos/background1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+#grid-div {
+  display: grid;
+  justify-content: center;
+  width: 100%;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+}
+
+.stack-img {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  max-width: 15rem;
+  max-height: 15rem;
+  box-shadow: 0.5rem 0.5rem;
+  transform: translate(calc(-50% + 0.5rem), 0);
+}
+
+.under-stack-panel {
+  box-shadow: 1rem 1rem;
+
+  transform: scale(0);
+  transition: transform 0.5s;
+}
+
+.under-stack-shown {
+  transform: scale(1);
+}
