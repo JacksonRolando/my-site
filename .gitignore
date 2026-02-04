@@ -1,2 +1,3 @@
-photos/*
-!photos/.hi
+server/media/*
+!server/media/.hi
+**/venv

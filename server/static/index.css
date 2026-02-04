@@ -31,7 +31,7 @@
 }
 
 html {
-  background-image: url("photos/background1.jpg");
+  background-image: url("media/background1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
@@ -63,6 +63,7 @@ button {
 
   transform: scale(0);
   transition: transform 0.5s;
+  overflow: hidden;
 }
 
 .under-stack-shown {
