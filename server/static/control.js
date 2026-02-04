@@ -16,6 +16,15 @@ const circleSplit = (numElementsToAdd, offset = 0) => {
     return radiansList
 }
 
+const closeFan = (e, stackElementId, children) => {
+    if (!document.getElementById(stackElementId).contains(e.target)) {
+        for (let i = 1; i < children.length; i++) {
+            let child = children[i].children[0]
+            child.classList.remove('stack-card-under-shown')
+        }
+    }
+}
+
 const fanStack = (stackElementId, offsetRadians = 0, remRadius = 10) => {
     const children = document.getElementById(stackElementId).children
 
@@ -32,13 +41,6 @@ const fanStack = (stackElementId, offsetRadians = 0, remRadius = 10) => {
         child.classList.add('stack-card-under-shown')
     }
 
-    window.addEventListener('click', function (e) {
-        if (!document.getElementById(stackElementId).contains(e.target)) {
-            for (let i = 1; i < children.length; i++) {
-                let child = children[i].children[0]
-                child.classList.remove('stack-card-under-shown')
-            }
-        }
-    });
-
+    window.addEventListener('click', (e) => closeFan(e, stackElementId, children));
+    window.addEventListener('touchstart', (e) => closeFan(e, stackElementId, children));
 }
