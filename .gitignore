@@ -1,3 +1,4 @@
 server/media/*
 !server/media/.hi
 **/venv
+**/__pycache__
