@@ -2,3 +2,4 @@ server/media/*
 !server/media/.hi
 **/venv
 **/__pycache__
+**/gen-venv

@@ -3,7 +3,40 @@ import os
 import re
 import datetime
 
+from PIL import Image
+
 image_regex = re.compile(r".*\.(jpe?g|png|gif|bmp|tiff)$", re.IGNORECASE)
+manifest_file = "mediaManifest.json"
+media_path = "../server/media"
+thumbnail_path = "../server/media/thumbnails"
+
+MAX_PXL_DIM = 1280
+
+
+def generate_thumbnail(img_path):
+    thumbnail = None
+    with Image.open(img_path) as img:
+        reduce_factor = int(max(1, (max(img.width, img.height) / MAX_PXL_DIM)))
+        thumbnail = img.reduce(reduce_factor)
+
+    return thumbnail
+
+
+def gen_and_save_thumbnails(manifest_path, in_photo_dir, out_dir):
+    manifest_obj = {}
+    with open(manifest_path) as f:
+        try:
+            manifest_obj = json.load(f)
+        except:
+            manifest_obj = {}
+
+    if not os.path.exists(out_dir):
+        os.makedirs(out_dir)
+
+    thumb = None
+    for img_name, _ in manifest_obj.items():
+        thumb = generate_thumbnail(os.path.join(in_photo_dir, img_name))
+        thumb.save(os.path.join(out_dir, "thumbnail_" + img_name))
 
 
 def update_manifest(manifest_path: str, photo_dir: str):
@@ -13,7 +46,6 @@ def update_manifest(manifest_path: str, photo_dir: str):
             manifest_obj = json.load(f)
         except:
             manifest_obj = {}
-        print(manifest_obj)
 
     files = [
         f
@@ -41,7 +73,8 @@ def update_manifest(manifest_path: str, photo_dir: str):
 
 
 def main():
-    update_manifest("mediaData.json", "../server/media")
+    # update_manifest(manifest_file, media_path)
+    gen_and_save_thumbnails(manifest_file, media_path, thumbnail_path)
 
 
 if __name__ == "__main__":
