@@ -34,9 +34,12 @@ def gen_and_save_thumbnails(manifest_path, in_photo_dir, out_dir):
         os.makedirs(out_dir)
 
     thumb = None
+    out_path = ""
     for img_name, _ in manifest_obj.items():
-        thumb = generate_thumbnail(os.path.join(in_photo_dir, img_name))
-        thumb.save(os.path.join(out_dir, "thumbnail_" + img_name))
+        out_path = os.path.join(out_dir, "thumbnail_" + img_name)
+        if not os.path.exists(out_path):
+            thumb = generate_thumbnail(os.path.join(in_photo_dir, img_name))
+            thumb.save(out_path)
 
 
 def update_manifest(manifest_path: str, photo_dir: str):
